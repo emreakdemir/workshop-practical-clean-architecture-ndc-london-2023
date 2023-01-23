@@ -21,13 +21,7 @@ namespace CaWorkshop.WebUI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoList>>> GetTodoLists()
         {
-            var b = await _context.TodoLists
-                                  .Include(a => a.Items)
-                                  .ToListAsync();
-            var c = await _context.TodoLists
-                                  .Include(a => a.Items).AsSplitQuery()
-                                  .ToListAsync();
-            var a = await _context.TodoLists
+            return await _context.TodoLists
                                   .Select(l => new TodoList
                                    {
                                        Id = l.Id,
@@ -42,8 +36,6 @@ namespace CaWorkshop.WebUI.Controllers
                                            Note = i.Note,
                                        }).ToList(),
                                    }).ToListAsync();
-
-            return a;
         }
 
         // PUT: api/TodoLists/5
