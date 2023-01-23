@@ -1,8 +1,10 @@
+using CaWorkshop.Domain.Entities;
+using CaWorkshop.Infrastructure.Data;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using CaWorkshop.WebUI.Data;
-using CaWorkshop.WebUI.Models;
 
 namespace CaWorkshop.WebUI.Controllers
 {
