@@ -1,3 +1,4 @@
+using CaWorkshop.Application.Common.Interfaces;
 using CaWorkshop.Infrastructure.Identity;
 using CaWorkshop.Infrastructure.Data;
 
@@ -26,7 +27,10 @@ public static class ConfigureServices
 
         services.AddAuthentication()
                 .AddIdentityServerJwt();
-
+        
+        services.AddScoped<IApplicationDbContext>(provider => 
+                provider.GetRequiredService<ApplicationDbContext>());
+        
         return services;
     }
 }
