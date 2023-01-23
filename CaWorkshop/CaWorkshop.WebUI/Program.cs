@@ -28,6 +28,11 @@ builder.Services.AddAuthentication()
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
+builder.Services.AddOpenApiDocument(configure =>
+{
+    configure.Title = "CaWorkshop API";
+});
+
 var app = builder.Build();
 
 // Initialise and seed the database on start-up
@@ -61,6 +66,10 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseOpenApi();
+app.UseSwaggerUi3();
+
 app.UseRouting();
 
 app.UseAuthentication();
