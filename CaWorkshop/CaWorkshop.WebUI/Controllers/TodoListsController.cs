@@ -3,40 +3,29 @@ using CaWorkshop.Application.TodoLists.Commands.DeleteTodoList;
 using CaWorkshop.Application.TodoLists.Commands.UpdateTodoList;
 using CaWorkshop.Application.TodoLists.Queries.GetTodoLists;
 
-using MediatR;
-
 using Microsoft.AspNetCore.Mvc;
 
 namespace CaWorkshop.WebUI.Controllers;
 
-[Route("api/[controller]")]
-[ApiController]
-public class TodoListsController : ControllerBase
+public class TodoListsController : ApiControllerBase
 {
-    private readonly IMediator _mediator;
-
-    public TodoListsController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
-
     // GET: api/TodoLists
    
     [HttpGet]
     public async Task<ActionResult<TodosVm>> GetTodoLists()
     {
-        return await _mediator.Send(new GetTodoListsQuery());
+        return await Mediator.Send(new GetTodoListsQuery());
     }
 
     // POST: api/TodoLists
     [HttpPost]
     public async Task<ActionResult<int>> PostTodoList(CreateTodoListCommand command)
     {
-        return await _mediator.Send(command);
+        return await Mediator.Send(command);
     }
 
     // PUT: api/TodoLists/5
-    [HttpPut("{id}")]
+    [HttpPut("{id:int}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesDefaultResponseType]
@@ -48,18 +37,18 @@ public class TodoListsController : ControllerBase
             return BadRequest();
         }
 
-        await _mediator.Send(command);
+        await Mediator.Send(command);
 
         return NoContent();
     }
 
     // DELETE: api/TodoLists/5
-    [HttpDelete("{id}")]
+    [HttpDelete("{id:int}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesDefaultResponseType]
     public async Task<IActionResult> DeleteTodoList(int id)
     {
-        await _mediator.Send(new DeleteTodoListCommand { Id = id });
+        await Mediator.Send(new DeleteTodoListCommand { Id = id });
 
         return NoContent();
     }
