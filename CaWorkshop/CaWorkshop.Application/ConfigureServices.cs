@@ -1,6 +1,7 @@
 using System.Reflection;
 
 using CaWorkshop.Application.Common.Behaviours;
+using CaWorkshop.Application.Common.Interfaces;
 
 using FluentValidation;
 
@@ -18,6 +19,7 @@ public static class ConfigureServices
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
+        services.AddValidatorsFromAssemblyContaining<IApplicationDbContext>();
         services.AddTransient(typeof(IPipelineBehavior<,>),
                 typeof(ValidationBehaviour<,>));
 

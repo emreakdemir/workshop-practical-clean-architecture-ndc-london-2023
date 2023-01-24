@@ -1,9 +1,6 @@
 using CaWorkshop.Infrastructure.Data;
 using CaWorkshop.Application;
-using CaWorkshop.Application.Common.Interfaces;
 using CaWorkshop.Infrastructure;
-
-using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +15,6 @@ builder.Services.AddOpenApiDocument(configure =>
     configure.Title = "CaWorkshop API";
 });
 
-builder.Services.AddValidatorsFromAssemblyContaining<IApplicationDbContext>();
 
 var app = builder.Build();
 
