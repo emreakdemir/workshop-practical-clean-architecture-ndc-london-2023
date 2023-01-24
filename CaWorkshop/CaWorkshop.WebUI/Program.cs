@@ -1,6 +1,7 @@
 using CaWorkshop.Infrastructure.Data;
 using CaWorkshop.Application;
 using CaWorkshop.Infrastructure;
+using CaWorkshop.WebUI.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +15,7 @@ builder.Services.AddOpenApiDocument(configure =>
 {
     configure.Title = "CaWorkshop API";
 });
-
+builder.Services.AddControllersWithViews(options => options.Filters.Add(new ApiExceptionFilterAttribute()));
 
 var app = builder.Build();
 

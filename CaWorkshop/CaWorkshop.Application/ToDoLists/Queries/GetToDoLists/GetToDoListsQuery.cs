@@ -25,7 +25,7 @@ public class GetTodoListsQueryHandler
         _context = context;
         _mapper = mapper;
     }
-
+    
     public async Task<TodosVm> Handle(GetTodoListsQuery request,
                                       CancellationToken cancellationToken)
     {
