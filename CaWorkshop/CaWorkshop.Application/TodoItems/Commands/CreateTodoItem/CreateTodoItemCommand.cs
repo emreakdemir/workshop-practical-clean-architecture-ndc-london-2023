@@ -1,5 +1,6 @@
 using CaWorkshop.Application.Common.Interfaces;
 using CaWorkshop.Domain.Entities;
+
 using MediatR;
 
 namespace CaWorkshop.Application.TodoItems.Commands.CreateTodoItem;
@@ -21,14 +22,13 @@ public class CreateTodoItemCommandHandler
         _context = context;
     }
 
-    public async Task<int> Handle(CreateTodoItemCommand request,
-                                  CancellationToken cancellationToken)
+    public async Task<int> Handle(CreateTodoItemCommand request, CancellationToken cancellationToken)
     {
         var entity = new TodoItem
         {
             ListId = request.ListId,
             Title = request.Title,
-            Done = false
+            Done = false,
         };
 
         _context.TodoItems.Add(entity);

@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace CaWorkshop.Domain.Entities;
 
 public class TodoList

@@ -1,10 +1,8 @@
 using Ardalis.GuardClauses;
 
 using CaWorkshop.Application.Common.Interfaces;
-using CaWorkshop.Domain.Entities;
-using MediatR;
 
-using NotFoundException = CaWorkshop.Application.Common.Exceptions.NotFoundException;
+using MediatR;
 
 namespace CaWorkshop.Application.TodoItems.Commands.DeleteTodoItem;
 

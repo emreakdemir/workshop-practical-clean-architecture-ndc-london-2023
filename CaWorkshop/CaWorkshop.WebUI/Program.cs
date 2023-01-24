@@ -1,14 +1,9 @@
 using CaWorkshop.Infrastructure.Data;
-using CaWorkshop.Infrastructure.Identity;
-
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
-using Microsoft.EntityFrameworkCore;
-
-using CaWorkshop.WebUI.Data;
 using CaWorkshop.Application;
+using CaWorkshop.Application.Common.Interfaces;
 using CaWorkshop.Infrastructure;
+
+using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,13 +11,14 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddApplicationServices();
 
-builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 builder.Services.AddOpenApiDocument(configure =>
 {
     configure.Title = "CaWorkshop API";
 });
+
+builder.Services.AddValidatorsFromAssemblyContaining<IApplicationDbContext>();
 
 var app = builder.Build();
 
