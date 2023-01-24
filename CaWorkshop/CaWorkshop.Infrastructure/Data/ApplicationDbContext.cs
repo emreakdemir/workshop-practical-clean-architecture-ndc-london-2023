@@ -18,6 +18,15 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
             : base(options, operationalStoreOptions)
     { }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder
+               .LogTo(Console.WriteLine)
+               .EnableDetailedErrors();
+
+        base.OnConfiguring(optionsBuilder);
+    }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
